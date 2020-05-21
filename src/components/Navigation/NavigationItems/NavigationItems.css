@@ -1,0 +1,11 @@
+
+.NavigationItems ul {
+	display: flex;
+	flex-direction: column;
+	padding-left: 0;
+	margin: 0;
+}
+
+.NavigationItems li {
+	text-align: left;
+}

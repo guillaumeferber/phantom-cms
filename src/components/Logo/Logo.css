@@ -1,0 +1,19 @@
+.Logo {
+	background-color: transparent;
+	padding: 8px 0;
+	height: 100%;
+	box-sizing: border-box;
+
+}
+
+.Logo img {
+	height: 100%;
+	transition: transform .15s ease-out 0s;
+}
+
+.Logo img:hover {
+	transform: scale(1.1);
+}
+.Logo.white img {
+	filter: invert(1);
+}

@@ -1,0 +1,44 @@
+.DrawerToggle {
+    width: 40px;
+    height: 100%;
+    display: none;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 18px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .15s ease-out 0s;
+}
+.DrawerToggle.Open {
+    display: flex;
+}
+
+.DrawerToggle div {
+    position: relative;
+    width: 70%;
+    height: 3px;
+    background-color: #fff;
+}
+
+.DrawerToggle:hover {
+    transform: translateX(-3px);
+}
+.DrawerToggle div:before,
+.DrawerToggle div:after {
+    position: absolute;
+    content: '';
+    left: -2px;
+    height: 3px; width: 50%;
+    background-color: #fff;
+}
+
+.DrawerToggle div:before {
+    top: 4px;
+    transform: rotate(45deg);
+}
+
+.DrawerToggle div:after {
+    top: -4px;
+    transform: rotate(-45deg);
+}
