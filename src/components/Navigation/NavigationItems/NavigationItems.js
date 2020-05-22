@@ -1,19 +1,28 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.css';
+import { PAGES_ROUTES } from '../../../routes/pages.routes';
+
 const navigationItems = ( props ) => {
-	const navigationItems = [
-		{ url: '/', label: 'Home' },
-		{ url: '/notes', label: 'Notes' }
-	]
+
+	const returnNavigationFromPages = () => {
+		return PAGES_ROUTES.map(route => {
+			return {
+				url: route.path,
+				label: route.name,
+				exact: route.exact
+			}
+		});
+	}
+
 	return (
 		<nav className={classes.NavigationItems}>
 			<ul>
-				{navigationItems.map((item, idx) => (
+				{returnNavigationFromPages().map((item, idx) => (
 					<NavigationItem
-						exact={idx === 0}
+						exact={item.exact}
 						url={item.url}
-						key={item.label}>
+						key={idx + item.label}>
 						{item.label}
 					</NavigationItem>
 				))}

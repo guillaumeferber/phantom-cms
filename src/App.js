@@ -1,16 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
-import Home from './containers/Home/Home';
-import Notes from './containers/Notes/Notes';
+import AppRoutes from './routes/app.routing';
 
 function App() {
   return (
     <Layout>
-      <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/notes" component={Notes} />
-        </Switch>
+      <AppRoutes />
     </Layout>
   );
 }

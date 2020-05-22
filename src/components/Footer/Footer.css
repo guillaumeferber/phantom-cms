@@ -1,5 +1,5 @@
 .Footer {
-    background-color: royalblue;
+    background-color: #C083E3;
     width: calc(100% - 80px);
     transform: translateX(80px);
     transition: all .3s cubic-bezier(0.87, 0, 0.13, 1);

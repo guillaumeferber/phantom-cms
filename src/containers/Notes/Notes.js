@@ -6,7 +6,7 @@ class Notes extends Component {
     render() {
         return (
             <Aux>
-                Notes
+                <h1>Notes</h1>
             </Aux>
          )
 

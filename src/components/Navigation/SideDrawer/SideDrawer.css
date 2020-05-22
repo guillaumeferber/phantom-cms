@@ -5,7 +5,7 @@
 	height: 100%;
 	top: 0; left: 0;
 	z-index: 200;
-	background-color: #252525;
+	background-image: linear-gradient(to bottom, #C083E3, #402A9C);
 	box-sizing: border-box;
 	box-shadow:0 0 13px 7px rgba(0,0,0, .2);
 	transition: all .3s cubic-bezier(0.87, 0, 0.13, 1);

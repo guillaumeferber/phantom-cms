@@ -13,18 +13,36 @@
 	color: #fff;
 	text-decoration: none;
 	height: 100%;
-	padding: 16px 10px;
-	border-bottom: 4px solid transparent;
+	padding: 18px 10px;
 	box-sizing: border-box;
 	transition: all .25s ease-out 0s;
+	opacity: .6;
 }
 
 .NavigationItem a:active,
 .NavigationItem a.active {
-	color: #333;
-	background-color: #fff;
+	position: relative;
+	background-image: linear-gradient(to right, rgba(255,255,255, .1) 50%, transparent);
+	opacity: 1;
 }
+
+.NavigationItem a::before {
+	position: absolute;
+	top: 0; left: 0;
+	height: 100%; width: 3px;
+	background-color: rgba(255,255,255, .5);
+	content: '';
+	display: none;
+	transition: all .25s ease-out 0s;
+}
+
 .NavigationItem a:hover {
-	color: #333;
-	background-color: #ddd;
+	position: relative;
+	opacity: 1;
+}
+
+.NavigationItem a:hover::before,
+.NavigationItem a:active::before,
+.NavigationItem a.active::before {
+	display: inline-block;
 }

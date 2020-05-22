@@ -1,11 +1,16 @@
 .Content {
 	margin-top: 56px;
+	background-color: lightgreen;
 	transform: translateX(80px);
 	padding: 20px;
+	min-height: calc(100vh - (80px + 56px));
 	transition: transform .3s cubic-bezier(0.87, 0, 0.13, 1);
+	box-sizing: border-box;
+	width: calc(100% - 80px);
 }
 
 .ContentOpen {
 	transform: translateX(280px);
 	transition: transform .3s cubic-bezier(0.87, 0, 0.13, 1);
+	width: calc(100% - 280px);
 }
