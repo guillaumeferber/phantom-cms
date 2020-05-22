@@ -1,6 +1,5 @@
 .Content {
 	margin-top: 56px;
-	background-color: lightgreen;
 	transform: translateX(80px);
 	padding: 20px;
 	min-height: calc(100vh - (80px + 56px));

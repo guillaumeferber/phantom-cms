@@ -1,0 +1,24 @@
+.NoteListItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 5px;
+    background-color: #fff;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+
+}
+.NoteListItem span {
+    width: 16px;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.NoteListItem span:first-child {
+    margin-left: auto;
+}
+
+.NoteListItem img {
+    width: 100%;
+    display: inline-block;
+}
