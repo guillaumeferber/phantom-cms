@@ -1,14 +1,17 @@
 import React from 'react';
 import * as cx from './NoteListItem.css';
-import editIcon from '../../../../assets/images/edit.svg';
 import deleteIcon from '../../../../assets/images/delete.svg';
+import * as utility from '../../../../store/utility';
+
 const noteListItem = (props) => {
     return (
-        <li className={cx.NoteListItem}>
-            {props.label}
-            <span onClick={props.selected}><img src={editIcon} alt="Edit"/></span>
-            <span onClick={props.deleted}><img src={deleteIcon} alt="Delete"/></span>
-            </li>
+        <li className={cx.NoteListItem} onClick={props.selected}>
+            <div className={cx.row}>
+                <b>{props.labelData.label}</b>
+                <span onClick={props.deleted}><img src={deleteIcon} alt="Delete"/></span>
+            </div>
+            <small>{utility.getDateFromTimestamp(props.labelData.date)}</small>
+        </li>
     )
 }
 

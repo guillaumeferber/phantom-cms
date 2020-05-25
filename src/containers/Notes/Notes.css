@@ -1,4 +1,59 @@
 .Notes {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
+}
+
+.NoteTitle {
+    position: relative;
+    text-indent: 30px;
+}
+
+.NoteTitle:before {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    content: '\2192';
+    display: inline-block;
+}
+
+.NotePlaceholder {
+    width: 25%;
+    text-align: center;
+    color: #aaa;
+    margin: 50px auto 0;
+}
+
+.NotePlaceholder:first-child {
+    margin-left: 0;
+}
+
+.NotePlaceholder span {
+    display: block;
+    margin-top: 10px;
+}
+
+.AddButton {
+    border: 0 none;
+    border-radius: 50%;
+    height: 36px; width: 36px;
+    background-color: #C083E3;
+    color: #fff;
+    text-align: center;
+    font-size: 1.4rem;
+    box-shadow: 0 2px 7px 0 rgba(0,0,0, .15);
+    transform: translateX(230px);
+    transition: all .3s ease 0s;
+    outline: 0;
+}
+.AddButton span {
+    display: inline-block;
+    transform: translateY(-1px);
+}
+
+.AddButton:hover,
+.AddButton:active,
+.AddButton:focus {
+    box-shadow: 0 2px 13px 2px rgba(0,0,0, .2);
+    background-color: rgb(187, 117, 228);
 }

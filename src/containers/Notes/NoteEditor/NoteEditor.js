@@ -1,37 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux/Aux';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as cx from './NoteEditor.css';
 
-const noteEditor = (props) => {
+class noteEditor extends Component {
+    constructor(props) {
+		super(props);
+        this.inputEl = React.createRef();
+    }
 
-    return (
-        <Aux>
+    onNameChangedHandler = (value) => {
+        this.props.onNoteSaved({ ...this.props.note, name: value });
+    }
+
+    componentDidMount() {
+        this.inputEl.current.value = '';
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.note.id !== this.props.note.id) {
+            this.inputEl.current.value = '';
+        }
+    }
+
+    renderInput = () => (<input
+        type="text"
+        className={cx.NoteEditorInput}
+        placeholder={this.props.note.name}
+        // value={this.props.note.name}
+        ref={this.inputEl}
+        onChange={(e) => this.props.onNoteSaved({ ...this.props.note, name: e.target.value })} />);
+
+    renderEditor = () => (<CKEditor
+        editor={ ClassicEditor }
+        data={this.props.note.value !== null ? this.props.note.value : '' }
+        value={this.props.note.value !== null ? this.props.note.value : '' }
+        onChange={ ( event, editor ) => {
+            this.props.onNoteSaved({ ...this.props.note, value: editor.getData() });
+            // console.log( { event, editor, data } );
+        } }
+        onBlur={ ( event, editor ) => {
+            if (this.props.note) {
+                this.props.onNoteSaved({ ...this.props.note, value: editor.getData() });
+            }
+            // console.log( 'Blur.', editor );
+        } }
+    />);
+
+    render() {
+        return (<Aux>
             <div className={cx.NoteEditor}>
-                <h2>Note Editor</h2>
-                {props.note ? <p>{props.note.name + ' #' + props.note.id}</p> : null}
-                <CKEditor
-                    editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
-                    onInit={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                />
+                {this.renderInput()}
+                {this.renderEditor()}
             </div>
-        </Aux>
-     );
+        </Aux>);
+    }
 }
 
 export default noteEditor;

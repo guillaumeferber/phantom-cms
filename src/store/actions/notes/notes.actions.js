@@ -3,8 +3,8 @@ export const addNote = (value) => ({
     type: ActionType.ADD_NOTE,
     payload: value
 });
-export const updateNote = (value) => ({
-    type: ActionType.UPDATE_NOTE,
+export const saveNote = (value) => ({
+    type: ActionType.SAVE_NOTE,
     payload: { note: value }
 });
 export const selectNote = (value) => ({

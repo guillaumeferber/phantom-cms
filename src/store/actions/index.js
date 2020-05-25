@@ -1,6 +1,6 @@
 export {
     addNote,
-    updateNote,
+    saveNote,
     selectNote,
     deleteNote
 } from './notes/notes.actions';

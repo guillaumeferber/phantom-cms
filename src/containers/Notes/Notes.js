@@ -11,18 +11,18 @@ class Notes extends Component {
     render() {
         return (
             <Aux>
-                <h1>Notes</h1>
-                <button onClick={this.props.noteAddeddHandler}>New note</button>
+                <h1 className={cx.NoteTitle}>Notes</h1>
+                <button onClick={this.props.noteAddeddHandler} className={cx.AddButton}><span>+</span></button>
                 <div className={cx.Notes}>
-                    <NotesList
+                    {this.props.notes.length > 0 ? <NotesList
                         notes={this.props.notes}
                         onNoteItemSelected={(event) => this.props.noteSelectedHandler(event)}
                         onNoteItemDeleted={(event) => this.props.noteDeletedHandler(event)}
-                    />
-                    <NoteEditor
+                    /> : <p className={cx.NotePlaceholder}><b>No note yet</b><span>Start by adding a new one</span></p>}
+                    {this.props.selectedNote ? <NoteEditor
                         note={this.props.selectedNote}
-                        onNoteUpdated={this.props.noteUpdatedHandler}
-                    />
+                        onNoteSaved={(e) => this.props.noteSavedHandler(e)}
+                    /> : <p className={cx.NotePlaceholder}>No note selected</p>}
                 </div>
             </Aux>
          )
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         noteAddeddHandler: () => dispatch(actionCreator.addNote({name: 'New note'})),
-        noteUpdatedHandler: (note) => dispatch(actionCreator.updateNote(note)),
+        noteSavedHandler: (note) => dispatch(actionCreator.saveNote(note)),
         noteDeletedHandler: (id) => dispatch(actionCreator.deleteNote(id)),
         noteSelectedHandler: (id) => dispatch(actionCreator.selectNote(id)),
     }

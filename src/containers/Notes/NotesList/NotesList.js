@@ -14,7 +14,7 @@ class NotesList extends Component {
                         return (
                             <NoteListItem
                                 key={note.id}
-                                label={note.id}
+                                labelData={{label: note.name, date: note.updateDate}}
                                 selected={() => this.props.onNoteItemSelected(note.id)}
                                 deleted={() => this.props.onNoteItemDeleted(note.id)} />
                         )

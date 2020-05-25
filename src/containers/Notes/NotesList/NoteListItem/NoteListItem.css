@@ -1,23 +1,38 @@
-.NoteListItem {
+.row {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.NoteListItem {
+    display: block;
     padding: 8px 5px;
     background-color: #fff;
     color: #333;
     border-bottom: 1px solid #ddd;
-
+    cursor: pointer;
+    text-align: left;
+    transition: all .15s ease-out 0s;
 }
+
+.NoteListItem:hover {
+    /* background-image: linear-gradient(to right, rgba(192, 131, 227, 0.481), transparent); */
+}
+
 .NoteListItem span {
     width: 16px;
     display: inline-block;
     margin-right: 5px;
     cursor: pointer;
-}
-.NoteListItem span:first-child {
     margin-left: auto;
+    transform: translateY(10px);
 }
 
+.NoteListItem small {
+    display: block;
+    font-size: .65rem;
+    margin-top: .25rem;
+}
 .NoteListItem img {
     width: 100%;
     display: inline-block;
