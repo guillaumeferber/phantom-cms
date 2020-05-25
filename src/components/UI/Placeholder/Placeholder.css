@@ -1,0 +1,15 @@
+.Placeholder {
+    width: 25%;
+    text-align: center;
+    color: #aaa;
+    margin: 50px auto 0;
+}
+
+.Placeholder:first-child {
+    margin-left: 0;
+}
+
+.Placeholder span {
+    display: block;
+    margin-top: 10px;
+}

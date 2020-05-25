@@ -17,22 +17,6 @@
     display: inline-block;
 }
 
-.NotePlaceholder {
-    width: 25%;
-    text-align: center;
-    color: #aaa;
-    margin: 50px auto 0;
-}
-
-.NotePlaceholder:first-child {
-    margin-left: 0;
-}
-
-.NotePlaceholder span {
-    display: block;
-    margin-top: 10px;
-}
-
 .AddButton {
     border: 0 none;
     border-radius: 50%;

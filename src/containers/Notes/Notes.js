@@ -4,6 +4,7 @@ import Aux from '../../hoc/Aux/Aux';
 import * as cx from './Notes.css';
 import NotesList from './NotesList/NotesList';
 import NoteEditor from './NoteEditor/NoteEditor';
+import Placeholder from '../../components/UI/Placeholder/Placeholder';
 
 import * as actionCreator from '../../store/actions/index';
 class Notes extends Component {
@@ -18,11 +19,11 @@ class Notes extends Component {
                         notes={this.props.notes}
                         onNoteItemSelected={(event) => this.props.noteSelectedHandler(event)}
                         onNoteItemDeleted={(event) => this.props.noteDeletedHandler(event)}
-                    /> : <p className={cx.NotePlaceholder}><b>No note yet</b><span>Start by adding a new one</span></p>}
+                    /> : <Placeholder><b>No note yet</b><span>Start by adding a new one</span></Placeholder>}
                     {this.props.selectedNote ? <NoteEditor
                         note={this.props.selectedNote}
                         onNoteSaved={(e) => this.props.noteSavedHandler(e)}
-                    /> : <p className={cx.NotePlaceholder}>No note selected</p>}
+                    /> : <Placeholder>No note selected</Placeholder>}
                 </div>
             </Aux>
          )
