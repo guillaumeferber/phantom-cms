@@ -4,6 +4,7 @@ import LoremIpsumGenerator from '../containers/LoremIpsumGenerator/LoremIpsumGen
 import ToDo from '../containers/ToDo/ToDo';
 import Login from '../containers/Login/Login';
 import Timers from '../containers/Timers/Timers';
+import Quiz from '../containers/Quiz/Quiz';
 
 export const PAGES_ROUTES = [
     { path: '/', component: Home,name: 'Home', exact: true },
@@ -12,4 +13,5 @@ export const PAGES_ROUTES = [
     { path: '/to-do', component: ToDo, name:'To Do', exact: false },
     { path: '/login', component: Login, name:'Login', exact: true },
     { path: '/timers', component: Timers, name:'Timers', exact: false },
+    { path: '/quiz', component: Quiz, name:'Quiz', exact: false },
 ];

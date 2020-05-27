@@ -42,11 +42,11 @@ class noteEditor extends Component {
         data={this.props.note.value !== null ? this.props.note.value : '' }
         value={this.props.note.value !== null ? this.props.note.value : '' }
         onChange={ ( event, editor ) => {
-            this.props.onNoteSaved({ ...this.props.note, value: editor.getData() });
+            // this.props.onNoteSaved({ ...this.props.note, value: editor.getData() });
             // console.log( { event, editor, data } );
         } }
         onBlur={ ( event, editor ) => {
-            if (this.props.note) {
+            if (this.props.note && (this.props.note.value.length !== editor.getData().length)) {
                 this.props.onNoteSaved({ ...this.props.note, value: editor.getData() });
             }
             // console.log( 'Blur.', editor );

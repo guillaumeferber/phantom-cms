@@ -1,9 +1,22 @@
 .Input {
-    color: #333;
     width: 100%;
-    padding: 10px;
     box-sizing: border-box;
+}
+
+
+.Input input {
+    height: 60px;
+    width: 100%;
+    text-indent: 20px;
     background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.Input + .Input {
+    margin: 0 20px;
 }
 
 .Label {
