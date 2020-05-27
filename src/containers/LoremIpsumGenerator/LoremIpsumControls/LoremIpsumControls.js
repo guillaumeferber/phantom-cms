@@ -16,10 +16,10 @@ const LoremIpsumControls = props => {
         <Aux>
             <div className={[cn.flex, cn.alignItemsCenter, cn.justifyContentStart].join(' ')}>
                 <LoremIpsumControl
-                    elementConfig={ {...inputConfig, name: 'paragraphs', placeholder: 'Nbr de paragraphes' } }
+                    elementConfig={ {...inputConfig, name: 'paragraphs', placeholder: 'Nbr of paragraphs' } }
                     changed={(e) => setParagraphs(+e.target.value)}/>
                 <LoremIpsumControl
-                    elementConfig={{...inputConfig,  name: 'sentences', placeholder: 'Nbr de phrases'}}
+                    elementConfig={{...inputConfig,  name: 'sentences', placeholder: 'Nbr of sentences'}}
                     changed={(e) => setSentences(+e.target.value) }/>
                 <Button
                     className={cn.floatRight}

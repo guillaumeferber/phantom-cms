@@ -4,6 +4,7 @@ import Aux from '../../hoc/Aux/Aux';
 import LoremIpsumControls from './LoremIpsumControls/LoremIpsumControls';
 import * as actionCreator from '../../store/actions/';
 import { connect } from 'react-redux';
+import * as cn from '../../assets/css/index.module.css';
 
 class LoremIpsumGenerator extends Component {
 
@@ -17,11 +18,14 @@ class LoremIpsumGenerator extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.reset();
+    }
 
     render() {
         return (
             <Aux>
-                <h1>Lorem Ipsum Generator</h1>
+                <h1 className={cn.Title}>&nbsp;Lorem Ipsum Generator</h1>
                 {/* controls */}
                 <LoremIpsumControls clicked={(e) => this.controlsClickedHandler(e)}/>
                 {/* output */}
@@ -37,7 +41,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    generateParagraph: (value) => dispatch(actionCreator.generateParagraph(value)),
-    generateSentence: (value) => dispatch(actionCreator.generateSentence(value))
+    reset: () => dispatch(actionCreator.reset()),
+    generateParagraph: value => dispatch(actionCreator.generateParagraph(value)),
+    generateSentence: value => dispatch(actionCreator.generateSentence(value))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(LoremIpsumGenerator);

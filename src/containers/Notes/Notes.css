@@ -4,19 +4,6 @@
     margin-top: 10px;
 }
 
-.NoteTitle {
-    position: relative;
-    text-indent: 30px;
-}
-
-.NoteTitle:before {
-    position: absolute;
-    top: 0;
-    left: -30px;
-    content: '\2192';
-    display: inline-block;
-}
-
 .AddButton {
     border: 0 none;
     border-radius: 50%;

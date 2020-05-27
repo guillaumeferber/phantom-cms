@@ -9,3 +9,7 @@ export const generateSentence = value => ({
     type: actionTypes.GENERATE_SENTENCE,
     payload: { value: value }
 });
+
+export const reset = () => ({
+    type: actionTypes.RESET
+});

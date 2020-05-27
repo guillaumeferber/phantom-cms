@@ -14,5 +14,6 @@ export {
 
 export {
     generateParagraph,
-    generateSentence
+    generateSentence,
+    reset
 } from './lorem/lorem.actions';

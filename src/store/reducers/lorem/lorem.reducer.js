@@ -19,6 +19,7 @@ export const loremReducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.GENERATE_PARAGRAPH: return generateParagraph(state, action);
         case actionTypes.GENERATE_SENTENCE: return generateSentence(state, action);
+        case actionTypes.RESET: return initialState;
         default: return state;
     }
 }

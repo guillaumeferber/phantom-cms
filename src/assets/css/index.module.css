@@ -125,7 +125,19 @@ body {
   border-color: #3068b6;
   color: #fff;
 }
+/* Title */
+.Title {
+  position: relative;
+  text-indent: 30px;
+}
 
+.Title:before {
+  position: absolute;
+  top: 0;
+  left: -30px;
+  content: '\2192';
+  display: inline-block;
+}
 
 .flex {
   display: flex;

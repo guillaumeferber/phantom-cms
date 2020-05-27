@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import * as cx from './Notes.css';
+import * as cn from '../../assets/css/index.module.css';
 import NotesList from './NotesList/NotesList';
 import NoteEditor from './NoteEditor/NoteEditor';
 import Placeholder from '../../components/UI/Placeholder/Placeholder';
@@ -12,7 +13,7 @@ class Notes extends Component {
     render() {
         return (
             <Aux>
-                <h1 className={cx.NoteTitle}>Notes</h1>
+                <h1 className={cn.Title}>&nbsp;Notes</h1>
                 <button onClick={this.props.noteAddeddHandler} className={cx.AddButton}><span>+</span></button>
                 <div className={cx.Notes}>
                     {this.props.notes.length > 0 ? <NotesList
