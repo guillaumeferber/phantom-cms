@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux/Aux';
+import Timers from '../Timers/Timers';
+import Card from '../../components/UI/Card/Card';
 
 class Home extends Component {
-    state = {  }
     render() {
         return (
             <Aux>
-                <h1>Homepage</h1>
+                <Card>
+                    <main><Timers variant="basic"/></main>
+                </Card>
             </Aux>
          );
     }

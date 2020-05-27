@@ -14,13 +14,18 @@ class noteEditor extends Component {
         this.props.onNoteSaved({ ...this.props.note, name: value });
     }
 
-    componentDidMount() {
+    onInputToFocus() {
         this.inputEl.current.value = '';
+        this.inputEl.current.focus();
+    }
+
+    componentDidMount() {
+        this.onInputToFocus();
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.note.id !== this.props.note.id) {
-            this.inputEl.current.value = '';
+            this.onInputToFocus();
         }
     }
 
