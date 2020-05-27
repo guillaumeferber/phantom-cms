@@ -4,6 +4,7 @@ body {
   font-weight: 700;
   line-height: 1.2;
 }
+
 .medium {
   font-size: 16px;
 }
@@ -98,6 +99,7 @@ body {
   opacity: 0.7;
   cursor: not-allowed;
   border: 1px solid;
+  pointer-events: none;
 }
 
 .disabled:hover {
@@ -122,4 +124,27 @@ body {
   background-color: #3068b6;
   border-color: #3068b6;
   color: #fff;
+}
+
+
+.flex {
+  display: flex;
+}
+
+.justifyContentBetween {
+  justify-content: space-between;
+}
+.justifyContentStart {
+  justify-content: flex-start;
+}
+.justifyContentEnd {
+  justify-content: flex-end;
+}
+
+.alignItemsCenter {
+  align-items: center;
+}
+
+.floatRight {
+  float: right;
 }

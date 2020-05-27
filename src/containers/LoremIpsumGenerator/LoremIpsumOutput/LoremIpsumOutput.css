@@ -1,0 +1,10 @@
+.LoremIpsumOutput {
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px dashed #ddd;
+    min-height: 300px; max-width: 100%;
+}
+
+.LoremIpsumOutput p {
+    font-weight: 400;
+}

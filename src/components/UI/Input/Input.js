@@ -13,6 +13,7 @@ const input = ( props ) => {
             className={inputClasses.join(' ')}
             {...props.elementConfig}
             onChange={props.changed}
+            onBlur={props.blurred}
             value={props.value} />;
             break;
         case 'textarea':
@@ -20,6 +21,7 @@ const input = ( props ) => {
             className={inputClasses.join(' ')}
             {...props.elementConfig}
             onChange={props.changed}
+            onBlur={props.blurred}
             value={props.value} />;
             break;
         case 'select':
@@ -43,6 +45,7 @@ const input = ( props ) => {
             className={inputClasses.join(' ')}
             {...props.elementConfig}
             onChange={props.changed}
+            onBlur={props.blurred}
             value={props.value} />;
     }
 

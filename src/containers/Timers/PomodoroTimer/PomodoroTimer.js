@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../../../hoc/Aux/Aux';
-import TimerControl from '../TimerControls/TimerControl/TimerControl';
+import TimerControl from '../TimerControl/TimerControl';
 import Button from '../../../components/UI/Button/Button';
 import Presets from '../Presets/Presets';
 import Timer from '../Timer/Timer';

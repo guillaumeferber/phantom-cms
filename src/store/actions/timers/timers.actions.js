@@ -6,7 +6,7 @@ export const increment = () => ({
 export const decrement = () => ({
    type:  actionTypes.DECREMENT
 });
-export const preset = (value) => {
+export const preset = value => {
    return {
       type:  actionTypes.PRESET,
       payload: {value: value}
@@ -17,7 +17,7 @@ export const start = () => {
       type:  actionTypes.START
    }
 };
-export const stop = (value) => {
+export const stop = () => {
    return {
       type:  actionTypes.STOP
    }
