@@ -29,7 +29,7 @@ export const storage = {
         window.localStorage.setItem(name, JSON.stringify(data));
     },
     unload: (name) => {
-        return JSON.parse(window.localStorage.getItem(name))[name];
+        return window.localStorage.getItem(name) && JSON.parse(window.localStorage.getItem(name))[name];
     },
     delete: (name) => {
         window.localStorage.removeItem(name);

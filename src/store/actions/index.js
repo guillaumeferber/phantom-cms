@@ -17,3 +17,14 @@ export {
     generateSentence,
     reset
 } from './lorem/lorem.actions';
+
+export {
+    startQuiz,
+    stopQuiz,
+    resetQuiz,
+    checkAnswer,
+    selectQuiz,
+    selectQuizList,
+    storeResults,
+    deleteResults
+} from './quiz/quiz.actions';
