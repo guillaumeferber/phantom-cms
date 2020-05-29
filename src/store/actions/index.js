@@ -25,6 +25,7 @@ export {
     checkAnswer,
     selectQuiz,
     selectQuizList,
+    selectQuizListAnswer,
     storeResults,
     deleteResults
 } from './quiz/quiz.actions';

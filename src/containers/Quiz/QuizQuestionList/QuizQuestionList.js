@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Aux from '../../../hoc/Aux/Aux';
 import QuizQuestionListItem from './QuizQuestionListItem/QuizQuestionListItem';
 import Title from '../../../components/UI/Title/Title';
-import Button from '../../../components/UI/Button/Button';
 
-const QuizQuestionList = (props) => {
-    const [ answer, setAnswer] = useState(0);
+const QuizQuestionList = props => {
 
     return (
         <Aux>
@@ -14,13 +12,14 @@ const QuizQuestionList = (props) => {
                 {props.questionList.answerList.map((answerListItem, index) => (
                     <li key={answerListItem.name+'%_%'+index}>
                         <QuizQuestionListItem
+                        highlighted={props.disabled && answerListItem.isAnswer}
+                        disabled={props.disabled}
                         label={answerListItem.label}
                         elementTypes={{name: answerListItem.name, id: answerListItem.slug+index, value: answerListItem.value}}
-                        changed={() => setAnswer({answer: answerListItem.slug, isAnswer: answerListItem.isAnswer})} />
+                        changed={() => props.answerHandler({quizId: props.quizId, quizListId: props.questionList.id, answer: answerListItem.slug, isAnswer: answerListItem.isAnswer})} />
                     </li>
                 ))}
             </ul>
-            <Button label="Check" variant="basic" clicked={() => props.answerHandler(answer)} />
         </Aux>
     );
 }

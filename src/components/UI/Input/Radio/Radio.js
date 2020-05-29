@@ -5,6 +5,7 @@ const radioInput = (props) => {
     return (
         <div className="RadioInput">
             <input
+                disabled={props.disabled}
                 id={id}
                 type="radio"
                 {...props.elementTypes}
