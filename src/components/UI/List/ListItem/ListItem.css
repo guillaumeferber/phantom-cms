@@ -1,0 +1,13 @@
+.ListItem.row {
+    display: inline-block;
+}
+.ListItem.column {
+    display: block;
+}
+.ListItem.row  + .ListItem {
+    margin-left: 15px;
+}
+.ListItem.column + .ListItem {
+    margin-top: 15px;
+    margin-left: 0;
+}

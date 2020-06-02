@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
-import * as cn from '../../assets/css/index.module.css';
+import globalStyles from '../../assets/css/index.module.css';
 import Button from '../../components/UI/Button/Button';
+import Title from '../../components/UI/Title/Title';
+import List from '../../components/UI/List/List';
+import ListItem from '../../components/UI/List/ListItem/ListItem';
 import QuizQuestionList from './QuizQuestionList/QuizQuestionList';
 import * as actionCreators from '../../store/actions/';
 
@@ -13,17 +16,18 @@ class Quiz extends Component {
     }
 
     renderQuizList = () => (
-        <ul>
+        <List>
             {this.props.quiz.map((quiz, index) => {
                 return (
-                    <li
-                        key={quiz.name+index+quiz.id}
-                        onClick={() => this.props.selectQuiz(quiz.id)}>
-                        {quiz.name}
-                    </li>
+                    <ListItem
+                        key={quiz.name+index+quiz.id}>
+                        <Button
+                            variant={this.props.selectedQuiz.id === quiz.id ? 'primary' : 'secondary'}
+                            clicked={() => this.props.selectQuiz(quiz.id)}>{quiz.name}</Button>
+                    </ListItem>
                 )
             })}
-        </ul>
+        </List>
     );
 
     renderQuizQuestionList = () => (
@@ -42,9 +46,10 @@ class Quiz extends Component {
     );
 
     render() {
+
         return (
             <Aux>
-                <h1 className={cn.Title}>&nbsp;{this.props.selectedQuiz.name}</h1>
+                <Title level='1' className={globalStyles.capitalize}>Your quiz:&nbsp;{this.props.selectedQuiz.name}</Title>
                 {this.renderQuizList()}
                 {this.props.quizStarted ? this.renderQuizQuestionList() : <Button label="Start quiz" clicked={this.props.startQuiz}/>}
             </Aux>

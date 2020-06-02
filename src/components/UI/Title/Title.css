@@ -1,0 +1,13 @@
+/* Title */
+.Title {
+    position: relative;
+    text-indent: 30px;
+  }
+
+.Title:before {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    content: '\2192';
+    display: inline-block;
+}
