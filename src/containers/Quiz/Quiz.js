@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import globalStyles from '../../assets/css/index.module.css';
-import Button from '../../components/UI/Button/Button';
-import Title from '../../components/UI/Title/Title';
-import List from '../../components/UI/List/List';
-import ListItem from '../../components/UI/List/ListItem/ListItem';
+import {Button, Title, List, ListItem} from '../../components/UI/';
 import QuizQuestionList from './QuizQuestionList/QuizQuestionList';
 import * as actionCreators from '../../store/actions/';
-
 class Quiz extends Component {
 
     componentDidMount() {

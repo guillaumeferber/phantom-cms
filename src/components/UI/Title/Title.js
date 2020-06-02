@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Title.css';
 import cx from 'classnames';
-import CustomTag from '../CustomTag/CustomTag';
 class Title extends Component {
     static propTypes = {
         children: PropTypes.node,
@@ -23,8 +22,9 @@ class Title extends Component {
             styles.Title,
             styles[variant]
         );
+        const CustomTag = `h${level}`;
         return (
-            <CustomTag level={level} className={_classNames}>{children}</CustomTag>
+            <CustomTag className={_classNames}>{children}</CustomTag>
             );
     }
 }
