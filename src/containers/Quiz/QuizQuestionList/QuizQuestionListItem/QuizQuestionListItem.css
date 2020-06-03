@@ -1,9 +1,0 @@
-.highlighted {
-    color: greenyellow
-}
-
-.stroke:after,
-.stroke:before {
-    content:"\00a0\00a0\00a0\00a0\00a0";
-    text-decoration:line-through;
-}

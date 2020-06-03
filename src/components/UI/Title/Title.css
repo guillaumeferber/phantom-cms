@@ -1,10 +1,14 @@
 /* Title */
 .Title {
     position: relative;
-    text-indent: 30px;
-  }
+}
 
-.Title:before {
+.Title.decorated {
+  text-indent: 30px;
+  padding-left: 10px;
+}
+
+.Title.decorated:before {
     position: absolute;
     top: 0;
     left: -30px;

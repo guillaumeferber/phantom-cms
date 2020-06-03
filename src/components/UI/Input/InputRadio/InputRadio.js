@@ -37,6 +37,7 @@ class InputRadio extends Component {
             styles[variant],
             { [styles.disabled]: disabled }
         );
+
         return (
             <div className={_classNames}>
                 <input

@@ -8,11 +8,13 @@ class List extends Component {
         children: PropTypes.node,
         variant: PropTypes.string,
         className: PropTypes.string,
+        type: PropTypes.string
     };
 
     static defaultProps = {
         className: "",
         variant: "basic",
+        type: null
     };
 
     renderChildren = () => {
@@ -22,15 +24,16 @@ class List extends Component {
     };
 
     render() {
-        const { className, variant } = this.props;
+        const { className, variant, type } = this.props;
 
         const _className = cx(
             className,
             styles.List,
             styles[variant]
         );
+        const ListType = type === 'ordered' ? `ol` : `ul`;
         return (
-            <ul className={_className}>{this.renderChildren()}</ul>
+            <ListType className={_className}>{this.renderChildren()}</ListType>
          );
     }
 }

@@ -156,3 +156,37 @@ body {
 .capitalize {
   text-transform: capitalize;
 }
+
+.textCenter {
+  text-align: center;
+}
+
+
+/*
+* Margins
+*/
+
+.marginAuto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+* width
+*/
+.w50 {
+  width: 50%;
+}
+
+.marginTop2 {
+  margin-top: 2rem;
+}
+.marginTop4 {
+  margin-top: 4rem;
+}
+.marginTop6 {
+  margin-top: 6rem;
+}
+.marginTop8 {
+  margin-top: 8rem;
+}

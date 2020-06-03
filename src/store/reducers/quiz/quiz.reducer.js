@@ -9,43 +9,48 @@ const initialState = {
     quizStarted: constants.DEFAULT_QUIZ_STATUS,
     quizStatus: { hasAnswered: false },
     error: { message: '', status: false },
-    results: null
+    results: []
 }
 const startQuiz = state => updateObject(state, { quizStarted: !initialState.quizStarted });
 const stopQuiz = state => updateObject(state, { quizStarted: initialState.quizStarted });
 const resetQuiz = state => updateObject(state, { ...initialState });
+
 const selectQuiz = (state, action) => {
     const quizIndex = state.quiz.findIndex(quiz => quiz.id === action.payload.id);
     const quizList = [ ...state.quiz ];
-    return updateObject(state, { selectedQuiz: quizList[quizIndex], selectedQuizList: quizList[quizIndex].quiz[0] });
+    const updatedQuizStatus = { ...state.quizStatus };
+    updatedQuizStatus.hasAnswered = false;
+    return updateObject(state, {
+        selectedQuiz: quizList[quizIndex],
+        selectedQuizList: quizList[quizIndex].quiz[0],
+        quizStatus: updatedQuizStatus,
+        quizStarted: false,
+        results: initialState.results
+    });
 };
 
 const selectQuizList = (state, action) => {
     const quizListIndex = state.selectedQuiz.quiz.findIndex(quizItem => quizItem.id === action.payload.id);
     const quizList = [ ...state.selectedQuiz.quiz ];
-    return updateObject(state, { selectedQuizList: quizList[quizListIndex] });
+    let updatedSelectedQuizList = { ...state.selectedQuizList };
+    updatedSelectedQuizList = quizList[quizListIndex + 1];
+    return updateObject(state, {
+        selectedQuizList: updatedSelectedQuizList,
+        quizStatus: initialState.quizStatus
+     });
 };
 
 const checkAnswer = (state, action) => {
     const updatedQuizStatus = { ...state.quizStatus };
     updatedQuizStatus.hasAnswered = true;
-    if (action.payload.value.isAnswer) {
-        let updatedSelectedQuizList = { ...state.selectedQuizList };
-        const quizListIndex = state.selectedQuiz.quiz.findIndex(quiz => quiz.id === state.selectedQuizList.id);
-        updatedSelectedQuizList = state.selectedQuiz.quiz[quizListIndex + 1];
-
-        return updateObject(state, {
-            error: initialState.error,
-            selectedQuizList: updatedSelectedQuizList,
-            selectedQuizListAnswer: initialState.selectedQuizListAnswer,
-            quizStatus: updatedQuizStatus
-         });
-    }
-
-    const updatedError = { ...state.error };
-    updatedError.message = `Try again!`;
-    updatedError.status = true;
-    return updateObject(state, { error: updatedError, quizStatus: updatedQuizStatus });
+    let updatedResults = [ ...state.results ];
+    updatedResults = updatedResults.concat(action.payload.value);
+    return updateObject(state, {
+        error: initialState.error,
+        selectedQuizListAnswer: initialState.selectedQuizListAnswer,
+        quizStatus: updatedQuizStatus,
+        results: updatedResults
+    });
 };
 
 const selectQuizListAnswer = (state, action) => updateObject(state, { selectedQuizListAnswer: action.payload.value });
