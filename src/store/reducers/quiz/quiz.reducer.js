@@ -6,13 +6,20 @@ const initialState = {
     selectedQuiz: constants.QUIZ_LIST[0],
     selectedQuizList: constants.QUIZ_LIST[0].quiz[0],
     selectedQuizListAnswer: null,
-    quizStarted: constants.DEFAULT_QUIZ_STATUS,
-    quizStatus: { hasAnswered: false },
+    quizStatus: { hasAnswered: false, progress: constants.QUIZ_PROGRESS.STOPPED },
     error: { message: '', status: false },
     results: []
 }
-const startQuiz = state => updateObject(state, { quizStarted: !initialState.quizStarted });
-const stopQuiz = state => updateObject(state, { quizStarted: initialState.quizStarted });
+const startQuiz = state => updateObject(state, { quizStatus: { progress: constants.QUIZ_PROGRESS.STARTED } });
+const stopQuiz = state => updateObject(state, { quizStatus: { progress: constants.QUIZ_PROGRESS.STOPPED } });
+const finishQuiz = (state, action) => {
+    let updatedResults = [ ...state.results ];
+    updatedResults = updatedResults.concat(action.payload.value);
+    return updateObject(state, {
+        quizStatus: { progress: constants.QUIZ_PROGRESS.FINISHED },
+        results: updatedResults
+    });
+};
 const resetQuiz = state => updateObject(state, { ...initialState });
 
 const selectQuiz = (state, action) => {
@@ -20,11 +27,11 @@ const selectQuiz = (state, action) => {
     const quizList = [ ...state.quiz ];
     const updatedQuizStatus = { ...state.quizStatus };
     updatedQuizStatus.hasAnswered = false;
+    updatedQuizStatus.progress = constants.QUIZ_PROGRESS.STOPPED;
     return updateObject(state, {
         selectedQuiz: quizList[quizIndex],
         selectedQuizList: quizList[quizIndex].quiz[0],
         quizStatus: updatedQuizStatus,
-        quizStarted: false,
         results: initialState.results
     });
 };
@@ -34,17 +41,24 @@ const selectQuizList = (state, action) => {
     const quizList = [ ...state.selectedQuiz.quiz ];
     let updatedSelectedQuizList = { ...state.selectedQuizList };
     updatedSelectedQuizList = quizList[quizListIndex + 1];
+
+    const updatedQuizStatus = { ...state.quizStatus };
+    updatedQuizStatus.hasAnswered = false;
+    updatedQuizStatus.progress = constants.QUIZ_PROGRESS[(quizListIndex !== state.selectedQuiz.quiz.length - 1 ? 'IN_PROGRESS' : 'FINISHED')];
     return updateObject(state, {
         selectedQuizList: updatedSelectedQuizList,
-        quizStatus: initialState.quizStatus
+        quizStatus: updatedQuizStatus,
+        results: [...state.results]
      });
 };
 
 const checkAnswer = (state, action) => {
     const updatedQuizStatus = { ...state.quizStatus };
     updatedQuizStatus.hasAnswered = true;
+    updatedQuizStatus.progress =  constants.QUIZ_PROGRESS.IN_PROGRESS;
     let updatedResults = [ ...state.results ];
     updatedResults = updatedResults.concat(action.payload.value);
+
     return updateObject(state, {
         error: initialState.error,
         selectedQuizListAnswer: initialState.selectedQuizListAnswer,
@@ -54,20 +68,17 @@ const checkAnswer = (state, action) => {
 };
 
 const selectQuizListAnswer = (state, action) => updateObject(state, { selectedQuizListAnswer: action.payload.value });
-const storeResults = (state, action) => updateObject(state, { results: action.payload.results });
-const deleteResults = (state, action) => updateObject(state, { id: action.payload.id });
 
 const quizReducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.START_QUIZ: return startQuiz(state);
         case actionTypes.STOP_QUIZ: return stopQuiz(state);
+        case actionTypes.FINISH_QUIZ: return finishQuiz(state, action);
         case actionTypes.RESET_QUIZ: return resetQuiz(state);
         case actionTypes.CHECK_QUIZ_ANSWER: return checkAnswer(state, action);
         case actionTypes.SELECT_QUIZ: return selectQuiz(state, action);
         case actionTypes.SELECT_QUIZ_LIST: return selectQuizList(state, action);
         case actionTypes.SELECT_QUIZ_LIST_ANSWER: return selectQuizListAnswer(state, action);
-        case actionTypes.STORE_QUIZ_RESULTS: return storeResults(state, action);
-        case actionTypes.DELETE_QUIZ_RESULTS: return deleteResults(state, action);
         default: return state;
     }
 }

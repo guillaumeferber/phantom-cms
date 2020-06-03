@@ -6,6 +6,7 @@ import {Button, Title, List, ListItem} from '../../components/UI/';
 import QuizQuestionList from './QuizQuestionList/QuizQuestionList';
 import * as actionCreators from '../../store/actions/';
 import cx from 'classnames';
+import * as constants from '../../store/constants/index';
 class Quiz extends Component {
 
     componentDidMount() {
@@ -27,31 +28,54 @@ class Quiz extends Component {
         </List>
     );
 
-    renderQuizQuestionList = () => (
-        <div>
-            <QuizQuestionList
-                hasAnswered={this.props.quizStatus && this.props.quizStatus.hasAnswered}
-                quizId={this.props.selectedQuiz.id}
-                questionList={this.props.selectedQuizList}
-                answerHandler={(e) => this.props.selectQuizListAnswer(e)} />
-            {!this.props.quizStatus.hasAnswered ? (
-                <Button
-                    disabled={!this.props.selectedQuizListAnswer}
-                    className={globalStyles.floatRight}
-                    label='Submit answer'
-                    variant='basic'
-                    clicked={() => this.props.checkAnswer(this.props.selectedQuizListAnswer)} />
-            ) : (
-                <Button
-                    className={globalStyles.floatRight}
-                    label='Next'
-                    variant='basic'
-                    clicked={() => this.props.selectQuizList(this.props.selectedQuizList.id)} />
-            )}
-
-        </div>
+    renderInitalQuestionButton = () => (
+        <Button
+            className={globalStyles.floatRight}
+            label='Next'
+            variant='basic'
+            clicked={() => this.props.selectQuizList(this.props.selectedQuizList.id)} />
     );
 
+    renderAnsweredQuestionButton = () => (
+        <Button
+            disabled={!this.props.selectedQuizListAnswer}
+            className={globalStyles.floatRight}
+            label='Submit answer'
+            variant='basic'
+            clicked={() => this.props.checkAnswer(this.props.selectedQuizListAnswer)} />
+    );
+
+    renderQuizQuestionList = () => (
+        <QuizQuestionList
+            hasAnswered={this.props.quizStatus && this.props.quizStatus.hasAnswered}
+            quizId={this.props.selectedQuiz.id}
+            questionList={this.props.selectedQuizList}
+            answerHandler={(e) => this.props.selectQuizListAnswer(e)} />
+    );
+
+    renderQuestionBody = (cn) => {
+        switch(this.props.quizStatus.progress) {
+            case constants.QUIZ_PROGRESS.STARTED:
+            case constants.QUIZ_PROGRESS.IN_PROGRESS:
+                return (
+                    <div>
+                        {this.renderQuizQuestionList()}
+                        {!this.props.quizStatus.hasAnswered ? this.renderAnsweredQuestionButton() : this.renderInitalQuestionButton()}
+                    </div>
+                );
+            case constants.QUIZ_PROGRESS.FINISHED:
+                return (
+                    <div className={cn}>
+                        <Title level="3">Quiz finished !</Title>
+                        {JSON.stringify(this.props.results)}
+                    </div>
+                );
+            default:
+                return (
+                    <div className={cn}><Button label="Start quiz" clicked={this.props.startQuiz}/></div>
+                );
+        }
+    }
     render() {
         const _classNames = cx(
             globalStyles.marginAuto,
@@ -63,18 +87,18 @@ class Quiz extends Component {
             <Aux>
                 <Title level='1' variant='decorated' className={globalStyles.capitalize}>Your quiz:&nbsp;{this.props.selectedQuiz.theme}</Title>
                 {this.renderQuizList()}
-                {this.props.quizStarted ? this.renderQuizQuestionList() : <div className={_classNames}><Button label="Start quiz" clicked={this.props.startQuiz}/></div>}
+                {this.renderQuestionBody(_classNames)}
             </Aux>
          );
     }
 }
 const mapStateToProps = state => ({
     quiz: state.quiz.quiz,
-    quizStarted: state.quiz.quizStarted,
     selectedQuiz: state.quiz.selectedQuiz,
     quizStatus: state.quiz.quizStatus,
     selectedQuizList: state.quiz.selectedQuizList,
     selectedQuizListAnswer: state.quiz.selectedQuizListAnswer,
+    results: state.quiz.results,
     error: state.quiz.error
 });
 
@@ -85,9 +109,7 @@ const mapDispatchToProps = dispatch => ({
     selectQuiz: id => dispatch(actionCreators.selectQuiz(id)),
     selectQuizList: id => dispatch(actionCreators.selectQuizList(id)),
     selectQuizListAnswer: value => dispatch(actionCreators.selectQuizListAnswer(value)),
-    checkAnswer: value => dispatch(actionCreators.checkAnswer(value)),
-    storeResults: value => dispatch(actionCreators.storeResults(value)),
-    deleteResults: id => dispatch(actionCreators.deleteResults(id))
+    checkAnswer: value => dispatch(actionCreators.checkAnswer(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

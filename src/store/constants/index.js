@@ -6,5 +6,5 @@ export {
 } from './timers.constant';
 export {
     QUIZ_LIST,
-    DEFAULT_QUIZ_STATUS
+    QUIZ_PROGRESS
 } from './quiz.constants';

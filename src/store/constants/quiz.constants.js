@@ -1,4 +1,9 @@
-export const DEFAULT_QUIZ_STATUS = false;
+export const QUIZ_PROGRESS = {
+    STOPPED: 'STOPPED',
+    STARTED: 'STARTED',
+    IN_PROGRESS: 'IN_PROGRESS',
+    FINISHED: 'FINISHED'
+};
 export const QUIZ_LIST = [
     {
         name: 'default',

@@ -21,11 +21,10 @@ export {
 export {
     startQuiz,
     stopQuiz,
+    finishQuiz,
     resetQuiz,
     checkAnswer,
     selectQuiz,
     selectQuizList,
-    selectQuizListAnswer,
-    storeResults,
-    deleteResults
+    selectQuizListAnswer
 } from './quiz/quiz.actions';

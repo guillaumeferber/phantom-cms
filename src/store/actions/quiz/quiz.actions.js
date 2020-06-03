@@ -8,6 +8,11 @@ export const stopQuiz = () => ({
     type: actionTypes.STOP_QUIZ
 });
 
+export const finishQuiz = (value) => ({
+    type: actionTypes.FINISH_QUIZ,
+    payload: { value }
+});
+
 export const resetQuiz = () => ({
     type: actionTypes.RESET_QUIZ
 });
@@ -30,14 +35,4 @@ export const selectQuizListAnswer = value => ({
 export const checkAnswer = (value) => ({
     type: actionTypes.CHECK_QUIZ_ANSWER,
     payload: { value }
-});
-
-export const storeResults = value => ({
-    type: actionTypes.STORE_QUIZ_RESULTS,
-    payload: { value }
-});
-
-export const deleteResults = id => ({
-    type:  actionTypes.DELETE_QUIZ_RESULTS,
-    payload: { id }
 });
