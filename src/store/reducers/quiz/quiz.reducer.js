@@ -3,15 +3,14 @@ import { updateObject, storage } from '../../utility';
 import * as constants from '../../constants/';
 const initialState = {
     quiz: storage.unload('quiz') || constants.QUIZ_LIST,
-    selectedQuiz: constants.QUIZ_LIST[0],
-    selectedQuizList: constants.QUIZ_LIST[0].quiz[0],
+    selectedQuiz: null,
+    selectedQuizList: null,
     selectedQuizListAnswer: null,
     quizStatus: { hasAnswered: false, progress: constants.QUIZ_PROGRESS.STOPPED },
     error: { message: '', status: false },
     results: []
 }
 const startQuiz = state => updateObject(state, { quizStatus: { progress: constants.QUIZ_PROGRESS.STARTED } });
-const stopQuiz = state => updateObject(state, { quizStatus: { progress: constants.QUIZ_PROGRESS.STOPPED } });
 const finishQuiz = (state, action) => {
     let updatedResults = [ ...state.results ];
     updatedResults = updatedResults.concat(action.payload.value);
@@ -72,7 +71,6 @@ const selectQuizListAnswer = (state, action) => updateObject(state, { selectedQu
 const quizReducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.START_QUIZ: return startQuiz(state);
-        case actionTypes.STOP_QUIZ: return stopQuiz(state);
         case actionTypes.FINISH_QUIZ: return finishQuiz(state, action);
         case actionTypes.RESET_QUIZ: return resetQuiz(state);
         case actionTypes.CHECK_QUIZ_ANSWER: return checkAnswer(state, action);

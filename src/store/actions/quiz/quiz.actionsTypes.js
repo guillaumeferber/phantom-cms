@@ -1,5 +1,4 @@
 export const START_QUIZ = 'START';
-export const STOP_QUIZ = 'STOP';
 export const FINISH_QUIZ = 'FINISH_QUIZ';
 export const RESET_QUIZ = 'RESET';
 export const CHECK_QUIZ_ANSWER = 'CHECK_ANSWER';

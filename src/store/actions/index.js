@@ -20,7 +20,6 @@ export {
 
 export {
     startQuiz,
-    stopQuiz,
     finishQuiz,
     resetQuiz,
     checkAnswer,

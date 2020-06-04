@@ -2,31 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import globalStyles from '../../assets/css/index.module.css';
-import {Button, Title, List, ListItem} from '../../components/UI/';
+import { Button, Title } from '../../components/UI/';
 import QuizQuestionList from './QuizQuestionList/QuizQuestionList';
 import * as actionCreators from '../../store/actions/';
 import cx from 'classnames';
 import * as constants from '../../store/constants/index';
+import QuizList from './QuizList/QuizList';
+import { Redirect } from 'react-router-dom';
 class Quiz extends Component {
-
     componentDidMount() {
         this.props.resetQuiz();
     }
-
-    renderQuizList = () => (
-        <List>
-            {this.props.quiz.map((quiz, index) => {
-                return (
-                    <ListItem
-                        key={quiz.name+index+quiz.id}>
-                        <Button
-                            variant={this.props.selectedQuiz.id === quiz.id ? 'primary' : 'secondary'}
-                            clicked={() => this.props.selectQuiz(quiz.id)}>{quiz.theme}</Button>
-                    </ListItem>
-                )
-            })}
-        </List>
-    );
 
     renderInitalQuestionButton = () => (
         <Button
@@ -64,36 +50,35 @@ class Quiz extends Component {
                     </div>
                 );
             case constants.QUIZ_PROGRESS.FINISHED:
-                return (
-                    <div className={cn}>
-                        <Title level="3">Quiz finished !</Title>
-                        {JSON.stringify(this.props.results)}
-                    </div>
-                );
+                return <Redirect to="/quiz-results" />;
             default:
                 return (
-                    <div className={cn}><Button label="Start quiz" clicked={this.props.startQuiz}/></div>
+                    this.props.selectedQuiz && <div className={cn}><Button label="Start quiz" clicked={this.props.startQuiz}/></div>
                 );
         }
     }
+
+    renderQuizTitle = () => {
+        const titleLabel = this.props.selectedQuiz ? `Your quiz: ${this.props.selectedQuiz.theme}` : 'Choose a quiz !';
+        return <Title level='1' variant='decorated' className={globalStyles.capitalize}>{titleLabel}</Title>
+    };
+
     render() {
-        const _classNames = cx(
-            globalStyles.marginAuto,
-            globalStyles.textCenter,
-            globalStyles.marginTop8
-        );
 
         return (
             <Aux>
-                <Title level='1' variant='decorated' className={globalStyles.capitalize}>Your quiz:&nbsp;{this.props.selectedQuiz.theme}</Title>
-                {this.renderQuizList()}
-                {this.renderQuestionBody(_classNames)}
+                {this.renderQuizTitle()}
+                <QuizList />
+                {this.renderQuestionBody(cx(
+                    globalStyles.marginAuto,
+                    globalStyles.textCenter,
+                    globalStyles.marginTop8
+                ))}
             </Aux>
          );
     }
 }
 const mapStateToProps = state => ({
-    quiz: state.quiz.quiz,
     selectedQuiz: state.quiz.selectedQuiz,
     quizStatus: state.quiz.quizStatus,
     selectedQuizList: state.quiz.selectedQuizList,
@@ -104,9 +89,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     startQuiz: () => dispatch(actionCreators.startQuiz()),
-    stopQuiz: () => dispatch(actionCreators.stopQuiz()),
     resetQuiz: () => dispatch(actionCreators.resetQuiz()),
-    selectQuiz: id => dispatch(actionCreators.selectQuiz(id)),
     selectQuizList: id => dispatch(actionCreators.selectQuizList(id)),
     selectQuizListAnswer: value => dispatch(actionCreators.selectQuizListAnswer(value)),
     checkAnswer: value => dispatch(actionCreators.checkAnswer(value))

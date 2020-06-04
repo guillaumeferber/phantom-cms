@@ -4,10 +4,6 @@ export const startQuiz = () => ({
     type: actionTypes.START_QUIZ
 });
 
-export const stopQuiz = () => ({
-    type: actionTypes.STOP_QUIZ
-});
-
 export const finishQuiz = (value) => ({
     type: actionTypes.FINISH_QUIZ,
     payload: { value }

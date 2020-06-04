@@ -1,5 +1,4 @@
 export const QUIZ_PROGRESS = {
-    STOPPED: 'STOPPED',
     STARTED: 'STARTED',
     IN_PROGRESS: 'IN_PROGRESS',
     FINISHED: 'FINISHED'
@@ -28,6 +27,16 @@ export const QUIZ_LIST = [
                     { label: 'Neil Armstrong', name:'reponse_2', slug: 'reponse_2_1', value: 'Neil Armstrong', isAnswer: true },
                     { label: 'Buzz Aldring', name:'reponse_2', slug: 'reponse_2_2', value: 'Buzz Aldring', isAnswer: false },
                     { label: 'Elon Musk', name:'reponse_2', slug: 'reponse_2_3', value: 'Elon Musk', isAnswer: false }
+                ]
+            },
+            {
+                position: 3,
+                label: 'Combien y a-t-il de planètes autour du Soleil',
+                id: 989816636,
+                answerList: [
+                    { label: '9', name:'reponse_3', slug: 'reponse_3_1', value: '9', isAnswer: false },
+                    { label: '6', name:'reponse_3', slug: 'reponse_3_2', value: '6', isAnswer: false },
+                    { label: '8', name:'reponse_3', slug: 'reponse_3_3', value: '8', isAnswer: true }
                 ]
             }
         ]

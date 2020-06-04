@@ -7,25 +7,30 @@ const navigationItems = ( props ) => {
 
 	const returnNavigationFromPages = () => {
 		return PAGES_ROUTES.map(route => {
-			return {
-				url: route.path,
-				label: route.name,
-				exact: route.exact
+			if (route.inNavigation) {
+				return {
+					url: route.path,
+					label: route.name,
+					exact: route.exact
+				}
 			}
+			return null;
 		});
 	}
 
 	return (
 		<nav className={classes.NavigationItems}>
 			<ul>
-				{returnNavigationFromPages().map((item, idx) => (
-					<NavigationItem
+				{returnNavigationFromPages().map((item, idx) => {
+					return item && (
+						<NavigationItem
 						exact={item.exact}
 						url={item.url}
 						key={idx + item.label}>
 						{item.label}
 					</NavigationItem>
-				))}
+					)
+				})}
 			</ul>
 		</nav>
 	 );
