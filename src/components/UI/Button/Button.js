@@ -66,9 +66,9 @@ class Button extends Component {
       }
     );
     return (
-      <div onClick={clicked} className={_className}>
+      <button type="button" onClick={clicked} className={_className}>
          {this.renderChildren()}
-      </div>
+      </button>
     );
   }
 }

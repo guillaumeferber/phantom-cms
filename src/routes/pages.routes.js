@@ -6,6 +6,7 @@ import Login from '../containers/Login/Login';
 import Timers from '../containers/Timers/Timers';
 import Quiz from '../containers/Quiz/Quiz';
 import QuizResults from '../containers/Quiz/QuizResults/QuizResults';
+import QuizCreator from '../containers/Quiz/QuizCreator/QuizCreator';
 
 export const PAGES_ROUTES = [
     { path: '/', component: Home,name: 'Home', exact: true, inNavigation: true },
@@ -16,4 +17,5 @@ export const PAGES_ROUTES = [
     { path: '/timers', component: Timers, name:'Timers', exact: false, inNavigation: true },
     { path: '/quiz', component: Quiz, name:'Quiz', exact: false, inNavigation: true },
     { path: '/quiz-results', component: QuizResults, name:'Quiz Results', exact: false, inNavigation: false },
+    { path: '/quiz-creator', component: QuizCreator, name:'Quiz Creator', exact: true, inNavigation: true },
 ];
